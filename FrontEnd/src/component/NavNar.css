@@ -1,0 +1,74 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.container__nav__bar{
+    background-color: black;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    font-family: "Roboto", sans-serif;
+    padding: 10px;
+}
+
+.nav__logo ul{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    
+}
+
+
+li{
+    list-style: none;
+}
+
+
+.panier__logo{
+    img{
+        width: 34px;
+        cursor: pointer;
+    }
+
+}
+
+.sectionPayment{
+    background-color: rgb(99, 96, 96);
+    width: 100%;
+    height: 100vh;
+     
+ 
+}
+
+.ContainerSectionPayment{
+    background-color: rgb(228, 226, 227);
+    width: 100%;
+   
+
+}
+
+/* .dataOFpaymeny{
+    width: 100%;
+    height: auto;
+    border: 3px solid blueviolet;
+}
+.nav__logo{
+    background-color: red;
+    width: 400px;
+}
+
+.PayCounter{
+    background-color: red;
+ 
+    border-radius: 10px;
+    position: relative;
+    left: 36px;
+    bottom: 20px;
+    padding: 4px;
+    
+} */

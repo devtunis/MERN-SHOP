@@ -1,0 +1,141 @@
+.sectionPayment{
+    img{
+       width: 100px;
+       height: 100px;
+       object-fit: contain;
+    }
+}
+
+.dataOFpaymeny{
+ display: flex;
+ flex-direction: row;
+ 
+}
+
+.ProudctPAY{
+
+    display: flex;
+    flex-direction: column;
+    background-color: green;
+    width: 400px;
+    text-align: center;
+    margin: 10px;
+    gap: 20px;
+    button{
+        padding: 10px;
+    }
+
+}
+
+.btnRemove{
+    background-color: red;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    button{
+        width: 100px;
+        cursor: pointer;
+    }
+}
+ 
+ 
+
+ .RemoveSection{
+  
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 10px;
+    font-size:29px;
+    cursor: pointer;
+ }
+
+ .titleCard{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 23px; 
+}
+
+.dataofPaymentImg img{
+    width: 140px;
+    object-fit: contain;
+    height: 100%;
+}
+
+
+
+.buttoPaymebnt{
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    font-size: 30px;
+    cursor: pointer;
+    margin: 10px;
+     
+}
+
+
+.dataOFpaymeny{
+    width: 100%;
+    height: auto;
+    border: 3px solid blueviolet;
+}
+.nav__logo{
+    background-color: red;
+    width: 400px;
+}
+
+.PayCounter{
+    background-color: red;
+ 
+    border-radius: 10px;
+    position: relative;
+    left: 36px;
+    bottom: 20px;
+    padding: 4px;
+    
+}
+
+
+@media only screen and (max-width: 600px) {
+    .dataOFpaymeny{
+        width: 100%;
+        height: auto;
+        border: 3px solid blueviolet;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        img{
+            width: 100%;
+        }
+    }
+    .nav__logo{
+        background-color: red;
+        width: 400px;
+    }
+    
+    .PayCounter{
+        background-color: red;
+     
+        border-radius: 10px;
+        position: relative;
+        left: 36px;
+        bottom: 20px;
+        padding: 4px;
+        
+    }
+    .x{
+           display: flex;
+           justify-content: center;
+            
+    }
+     
+    
+    
+  }
+
+  

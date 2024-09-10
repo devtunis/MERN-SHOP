@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menzel Paris</title>
+    <style>
+        /* Styles de base */
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: black;
+            color: white;
+        }
+        h1 {
+            margin: 0;
+            font-size: 1.5em;
+        }
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 20px;
+        }
+        nav ul li {
+            margin: 0;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            margin-left: 100px;;
+        }
+        .cart-icon {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+        .cart-icon img {
+            width: 24px;
+            height: 24px;
+        }
+         /* Styles du carousel */
+         .carousel {
+            position: relative;
+            max-width: 100%;
+            margin: 20px 0;
+            overflow: hidden;
+            margin-top: 0;
+        }
+        .carousel-images {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .carousel-images img {
+            width: 100%;
+            min-width: 100%;
+            height: 600px;
+        }
+        .carousel-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            text-align: center;
+            font-size: 2em;
+            background-color: rgba(0, 0, 0, 0.5); /* Fond semi-transparent */
+            padding: 10px 20px;
+            border-radius: 10px;
+        }
+
+        /* Section Accueil */
+        h2 { text-align: center;
+        background-color: black;
+        color: white ;
+        margin: 0;}
+        .accueil-section {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 20px 0;
+        }
+        .accueil-item {
+            text-align: center;
+        }
+        .accueil-item img {
+            width: 100%;
+            max-width: 350px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .accueil-item button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .accueil-item button:hover {
+            background-color: #555;
+        }
+        
+
+        /* Styles pour les écrans plus petits */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            nav ul {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .cart-icon {
+                align-self: flex-end;
+            }
+            .carousel-text {
+                font-size: 1.5em;
+                padding: 8px 15px;
+            }
+            .accueil-section {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.2em;
+            }
+            nav ul {
+                width: 100%;
+                display: flex;
+                justify-content: space-around;
+            }
+            .cart-icon img {
+                width: 20px;
+                height: 20px;
+            }
+            .carousel-text {
+                font-size: 1.2em;
+                padding: 6px 10px;
+            }
+            
+        }
+        /* Exemple de media query supplémentaire pour l'optimisation mobile */
+        @media (max-width: 768px) {
+        .products-section div {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+}
+
+.form-section {
+    margin-bottom: 20px;
+}
+
+.form-section h2 {
+    margin-top: 0;
+}
+
+.form-section form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-section label {
+    margin: 5px 0;
+}
+
+.form-section input {
+    margin-bottom: 10px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.form-section button {
+    padding: 10px;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.form-section button:hover {
+    background-color: #333;
+}
+.icone {margin-right: 130px;}
+.add-to-cart-button {background-color: #56cb34 ;
+font-size: 18px;}
+.add-to-cart-button:hover {background-color: #96f57a;}
+
+/* Styles pour la fenêtre modale */
+.modal {
+    display: none; /* Caché par défaut */
+    position: fixed; /* Reste en place lorsqu'on défile */
+    z-index: 1000; /* Au-dessus des autres éléments */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fond semi-transparent */
+    backdrop-filter: blur(5px); /* Effet de flou en arrière-plan */
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: -1% auto; /* Centre la fenêtre modale */
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 500px;
+    position: relative;
+    height: 600px;
+
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.tab-button {
+    padding: 10px;
+    border: none;
+    background-color: #333;
+    color: white;
+    cursor: pointer;
+    margin: 0 5px;
+}
+
+.tab-button.active {
+    background-color: #555;
+}
+
+.form-section {
+    display: none; /* Caché par défaut */
+}
+
+.form-section form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-section label,
+.form-section input,
+.form-section button {
+    margin-bottom: 10px;
+}
+
+.form-section button {
+    padding: 10px;
+    background-color: black;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.form-section button:hover {
+    background-color: #333;
+}
+
+
+
+
+
+
+
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>MENZEL Paris</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Accueil</a></li>
+                <li><a href="#prod">Produits</a></li>
+                <li><a href="#" id="accountLink" class="account-button">Mon Compte</a></li>
+                <li><a href="#cont">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="cart-icon">
+            <a class="icone" href="panier.html"><img src="panier.png" alt="Panier"></a>
+        </div>
+    </header>
+     
+
+    <div class="carousel">
+        <div class="carousel-images">
+            <img src="img2.png" alt="Image 1">
+            <img src="img2.png" alt="Image 2">
+            <img src="img2.png" alt="Image 3">
+        </div>
+        <div class="carousel-text">Bienvenue sur MENZEL Paris. Découvrez un large choix de casquettes. <br> Votre style comme vous l'aimez avec notre selection d'accessoire pour vous. </div>
+    </div>
+    <h2>ACCEUIL</h2>
+    <section class="accueil-section">
+        <div class="accueil-item">
+            <img class="dec" src="imdec1.png" alt="Produit 1">
+            <button>Découvrir nos casquettes</button>
+        </div>
+        <div class="accueil-item">
+            <img class="dec" src="imdec2.png" alt="Produit 2">
+            <button>Découvrir nos sacs</button>
+        </div>
+        <div class="accueil-item">
+            <img class="dec" src="imdec3.png" alt="Produit 3">
+            <button>Découvrir nos lunettes</button>
+        </div>
+       
+    </section>
+    <section class="products-section" style="padding: 20px; " id="prod">
+        <h2 style="text-align: center;">NOS PRODUITS</h2>
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-around;">
+            <div style="width: 30%; text-align: center; margin: 10px;">
+                <img src="IMG_3703.JPG" alt="Casquette 1" style="width: 100%; height: auto;">
+                <h3>Casquette 1</h3>
+                <p>Prix: 19,99€</p>
+                <button data-id="2" class="add-to-cart-button">Ajouter au Panier</button>
+            </div>
+            <div style="width: 30%; text-align: center; margin: 10px;">
+                <img src="IMG_3704.JPG" alt="Casquette 2" style="width: 100%; height: auto;">
+                <h3>Casquette 2</h3>
+                <p>Prix: 19,99€</p>
+                <button data-id="2" class="add-to-cart-button">Ajouter au Panier</button>
+            </div>
+            <div style="width: 30%; text-align: center; margin: 10px;">
+                <img src="IMG_3705.JPG" alt="Casquette 1" style="width: 100%; height: auto;">
+                <h3>Casquette 1</h3>
+                <p>Prix: 19,99€</p>
+                <button data-id="3" class="add-to-cart-button">Ajouter au Panier</button>
+            </div>
+            <div style="width: 30%; text-align: center; margin: 10px;">
+                <img src="IMG_3706.JPG" alt="Casquette 2" style="width: 100%; height: auto;">
+                <h3>Casquette 2</h3>
+                <p>Prix: 19,99€</p>
+                <button data-id="4" class="add-to-cart-button">Ajouter au Panier</button>
+            </div>
+            <div style="width: 30%; text-align: center; margin: 10px;">
+                <img src="IMG_3711.JPG" alt="Casquette 1" style="width: 100%; height: auto;">
+                <h3>Casquette 1</h3>
+                <p>Prix: 19,99€</p>
+                <button data-id="5" class="add-to-cart-button">Ajouter au Panier</button>
+            </div>
+            <div style="width: 30%; text-align: center; margin: 10px;">
+                <img src="IMG_3712.JPG" alt="Casquette 2" style="width: 100%; height: auto;">
+                <h3>Casquette 2</h3>
+                <p>Prix: 19,99€</p>
+                <button data-id="6" class="add-to-cart-button">Ajouter au Panier</button>
+            </div>
+            <div style="width: 30%; text-align: center; margin: 10px;">
+                <img src="IMG_3697.JPG" alt="Casquette 1" style="width: 100%; height: auto;">
+                <h3>Casquette 1</h3>
+                <p>Prix: 19,99€</p>
+                <button data-id="7" class="add-to-cart-button">Ajouter au Panier</button>
+            </div>
+            <div style="width: 30%; text-align: center; margin: 10px;">
+                <img src="IMG_3698.JPG" alt="Casquette 2" style="width: 100%; height: auto;">
+                <h3>Casquette 2</h3>
+                <p>Prix: 19,99€</p>
+                <button data-id="8" class="add-to-cart-button">Ajouter au Panier</button>
+            </div>
+            <div style="width: 30%; text-align: center; margin: 10px;">
+                <img src="IMG_3707.JPG" alt="Casquette 1" style="width: 100%; height: auto;">
+                <h3>Casquette 1</h3>
+                <p>Prix: 19,99€</p>
+                <button data-id="9" class="add-to-cart-button">Ajouter au Panier</button>
+            </div>
+            <div style="width: 30%; text-align: center; margin: 10px;">
+                <img src="IMG_3709.JPG" alt="Casquette 2" style="width: 100%; height: auto;">
+                <h3>Casquette 2</h3>
+                <p>Prix: 19,99€</p>
+                <button data-id="10" class="add-to-cart-button">Ajouter au Panier</button>
+            </div>
+            <div style="width: 30%; text-align: center; margin: 10px;">
+                <img src="IMG_3710.JPG" alt="Casquette 1" style="width: 100%; height: auto;">
+                <h3>Casquette 1</h3>
+                <p>Prix: 19,99€</p>
+                <button data-id="11" class="add-to-cart-button">Ajouter au Panier</button>
+            </div>
+            <div style="width: 30%; text-align: center; margin: 10px;">
+                <img src="IMG_3702.JPG" alt="Casquette 2" style="width: 100%; height: auto;">
+                <h3>Casquette 2</h3>
+                <p>Prix: 19,99€</p>
+                <button data-id="12" class="add-to-cart-button">Ajouter au Panier</button>
+            </div>
+            <!-- Ajoutez d'autres produits ici -->
+        </div>
+    </section>
+    <section class="contact-section" style="padding: 20px;" id="cont">
+        <h2 style="text-align: center;">Contactez-nous</h2>
+        <form style="max-width: 600px; margin: 0 auto;">
+            <div style="margin-bottom: 10px;">
+                <label for="name">Nom:</label>
+                <input type="text" id="name" name="name" style="width: 100%; padding: 10px;">
+            </div>
+            <div style="margin-bottom: 10px;">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" style="width: 100%; padding: 10px;">
+            </div>
+            <div style="margin-bottom: 10px;">
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" style="width: 100%; padding: 10px;"></textarea>
+            </div>
+            <button type="submit" style="padding: 10px 20px; background-color: black; color: white; border: none; cursor: pointer;">Envoyer</button>
+        </form>
+        <script>
+            function validateForm() {
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const message = document.getElementById('message').value;
+                if (!name || !email || !message) {
+                    alert('Veuillez remplir tous les champs.');
+                    return false;
+                }
+                return true;
+            }
+            </script>
+    </section>
+    
+  
+    <footer style="background-color: black; color: white; padding: 20px; text-align: center;">
+        <div>
+            <p>&copy; 2024 MENZEL Paris. Tous droits réservés.</p>
+            <p><a href="mentions-legales.html" style="color: white; text-decoration: none;">Mentions Légales</a> | <a href="confidentialite.html" style="color: white; text-decoration: none;">Politique de Confidentialité</a></p>
+            <p>Suivez-nous :</p>
+            <a href="#"><img src="whatsapp.png" alt="WhatsApp" style="width: 24px; margin: 0 10px;"></a>
+            <a href="#"><img src="instagram.png" alt="Instagram" style="width: 24px; margin: 0 10px;"></a>
+            <a href="#"><img src="tiktok.png" alt="Tiktok" style="width: 24px; margin: 0 10px;"></a>
+        </div>
+    </footer>
+    
+    <script>
+        let currentIndex = 0;
+        const images = document.querySelectorAll('.carousel-images img');
+        const totalImages = images.length;
+    
+        function showNextImage() {
+            currentIndex++;
+            if (currentIndex >= totalImages) {
+                currentIndex = 0;
+            }
+            document.querySelector('.carousel-images').style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+    
+        setInterval(showNextImage, 3000); // Change d'image toutes les 3 secondes
+        
+        document.addEventListener('DOMContentLoaded', function() {
+        const modal = document.getElementById('modal');
+        const closeModal = document.querySelector('.close');
+        const accountLink = document.getElementById('accountLink');
+        const registerTab = document.getElementById('registerTab');
+        const loginTab = document.getElementById('loginTab');
+        const registerForm = document.getElementById('registerForm');
+        const loginForm = document.getElementById('loginForm');
+        
+
+
+        // Afficher la fenêtre modale au clic
+        accountLink.addEventListener('click', function(event) {
+            event.preventDefault(); // Empêche le comportement par défaut du lien
+            modal.style.display = 'block';
+        });
+
+        // Fermer la fenêtre modale
+        closeModal.addEventListener('click', function() {
+            modal.style.display = 'none';
+        });
+
+        // Afficher le formulaire d'inscription
+        registerTab.addEventListener('click', function() {
+            registerTab.classList.add('active');
+            loginTab.classList.remove('active');
+            registerForm.style.display = 'block';
+            loginForm.style.display = 'none';
+        });
+
+        // Afficher le formulaire de connexion
+        loginTab.addEventListener('click', function() {
+            loginTab.classList.add('active');
+            registerTab.classList.remove('active');
+            registerForm.style.display = 'none';
+            loginForm.style.display = 'block';
+        });
+
+        // Initialiser la vue par défaut
+        registerTab.click();
+
+        // Fermer la fenêtre modale lorsque l'utilisateur clique en dehors de celle-ci
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        };
+        
+    });
+
+    
+</script>
+
+    
+    
+
+    <!-- Fenêtre modale -->
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <div id="accountTabs">
+            <button id="registerTab" class="tab-button">S'inscrire</button>
+            <button id="loginTab" class="tab-button">Se connecter</button>
+        </div>
+        <div id="registerForm" class="form-section">
+            <h3>Inscription</h3>
+            <form onsubmit="return verif()" action="basa.php" method="POST">
+                <label for="registerName">Nom:</label>
+                <input type="text" id="registerName" name="registerName" required>
+                <label for="registerFirstname">Prénom:</label>
+                <input type="text" id="registerFirstname" name="registerFirstname" required>
+                <label for="registerEmail">Email:</label>
+                <input type="email" id="registerEmail" name="registerEmail" required>
+                <label for="registerPhone">Téléphone:</label>
+                <input type="tel" id="registerPhone" name="registerPhone">
+                <label for="registerPassword">Mot de passe:</label>
+                <input type="password" id="registerPassword" name="registerPassword" required>
+                <label for="confirmPassword">Confirmation du mot de passe:</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" required>
+                <button type="submit">S'inscrire</button>
+            </form>
+            
+        </div>
+        <div id="loginForm" class="form-section">
+            <h3>Connexion</h3>
+            <form>
+                <label for="loginEmail">Email:</label>
+                <input type="email" id="loginEmail" name="loginEmail" required>
+                <label for="loginPassword">Mot de passe:</label>
+                <input type="password" id="loginPassword" name="loginPassword" required>
+                <button type="submit">Se connecter</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+    <script src="produits.js"></script>
+    <script src="script.js"></script>
+
+    
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
+
