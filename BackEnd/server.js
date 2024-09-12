@@ -5,6 +5,7 @@
     import cors from "cors"
     import multer from "multer";
     import path from "path";
+import { error } from "console";
     const app = express();
     const port = 5000;
 
@@ -264,6 +265,36 @@ app.get("/ADMIN",async(req,res)=>{
 
 
     
+
+ 
+
+
+
+app.post("/identify", async (req, res) => {
+  const { username, password } = req.body;
+
+  try {
+    // Fetch the user based on username
+    const users = await Users.findOne({ username: username});
+
+    if (!users) {
+      return res.status(404).json({ message: "User not found" });
+    }
+ // do condtion if he admin or not 
+    // Compare the provided password with the hashed password stored in the database
+    const isMatch = password==users.password 
+
+    if (isMatch) {
+      // Authentication successful
+      res.status(200).json({users});
+    } 
+  } catch (error) {
+    console.log(`Error: ${error}`);
+    res.status(500).json({ message: "An error occurred" });
+  }
+});
+
+
 
 
     // Start the server
