@@ -4,17 +4,17 @@ import "./CardCasquuete1.css";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios";
-
+import { useNavigate } from "react-router-dom";
 const CardCasquuete1 = ({ id, imgItem, titleProduct, PrixProduct }) => {
   console.log({ id, imgItem, titleProduct, PrixProduct });
-  
+  const Nav = useNavigate()
   // Access both dispatch and auth from GlobalContext
   const { dispatch, auth } = useGlobalContext(); 
   const [userData, setUserData] = useState([]);
-
+const notify = () => toast("ajouter dans payment");
   const handleData = async () => {
     console.log(id, imgItem, titleProduct, PrixProduct);
-
+      !auth && Nav("/")
     try {
       // Update the backend
       await axios.put(`http://localhost:5000/x/${auth.userId}`, {
@@ -24,7 +24,8 @@ const CardCasquuete1 = ({ id, imgItem, titleProduct, PrixProduct }) => {
         userId: auth.userId,
         PrixProduct
       });
-
+       
+      notify()
       // Fetch updated user data
       const response = await axios.get(`http://localhost:5000/findoneUser/${auth.userId}`);
       setUserData(response.data); // Update the state with fetched data
@@ -48,11 +49,13 @@ const CardCasquuete1 = ({ id, imgItem, titleProduct, PrixProduct }) => {
       <div className="imgCardQas">
         <img src={imgItem} alt="product" />
       </div>
-      <div className="TitleImgCarde">{titleProduct}</div>
+      <div className="TitleImgCarde a">{titleProduct}</div>
       <br />
-      <div className="PrixTitle">{PrixProduct} €</div>
+      <div className="PrixTitle a">{PrixProduct} €</div>
       <br />
-      <button onClick={handleData}>Ajouter au panier</button>
+      <button onClick={handleData}>      <span class="material-symbols-outlined">
+shopping_cart
+</span></button>
       
  
     </div>

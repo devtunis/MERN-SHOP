@@ -1,11 +1,10 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-
-.container__nav__bar{
+.container__nav__bar {
     background-color: black;
     color: white;
     display: flex;
@@ -13,62 +12,112 @@
     justify-content: space-around;
     font-family: "Roboto", sans-serif;
     padding: 10px;
+    
 }
 
-.nav__logo ul{
+.nav__logo {
+    display: flex;
+     width: 600px;
+     flex-direction: column;
+ 
+     
+}
+
+.nav__logo ul {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 5px;
+    gap: 10px;
     
 }
 
-
-li{
+li {
+    cursor: pointer;
     list-style: none;
 }
 
-
-.panier__logo{
-    img{
-        width: 34px;
-        cursor: pointer;
-    }
-
+.panier__logo img {
+    width: 34px;
+    cursor: pointer;
 }
 
-.sectionPayment{
+.sectionPayment {
     background-color: rgb(99, 96, 96);
     width: 100%;
     height: 100vh;
-     
- 
 }
 
-.ContainerSectionPayment{
+.ContainerSectionPayment {
     background-color: rgb(228, 226, 227);
     width: 100%;
-   
-
 }
 
-/* .dataOFpaymeny{
-    width: 100%;
-    height: auto;
-    border: 3px solid blueviolet;
-}
-.nav__logo{
-    background-color: red;
-    width: 400px;
+.hrItem {
+    display: none;
 }
 
-.PayCounter{
-    background-color: red;
+.xbutton {
+    display: none;
+}
+
  
-    border-radius: 10px;
-    position: relative;
-    left: 36px;
-    bottom: 20px;
-    padding: 4px;
-    
-} */
+
+
+@media only screen and (max-width: 600px) {
+    .hrItem {
+        display: block;
+    }
+    .xbutton {
+        display: block;
+        font-size: 30px;
+    }
+    .changePostion {
+        position: absolute;
+        right: 0;
+        margin-right: 15px;
+    }
+
+    .container__nav__bar {
+        background-color: black;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Roboto", sans-serif;
+        padding: 2px;
+        flex-direction: column;
+    }
+
+    .nav__logo {
+        display: none; /* Hide menu by default */
+    }
+
+    .nav__logo.open {
+        display: flex; /* Show menu when open */
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .nav__logo ul {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 1px;
+    }
+
+    .panier__logo img {
+        max-width: 36px;
+    }
+
+    ul {
+        background-color: black;
+    }
+
+    .logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+}

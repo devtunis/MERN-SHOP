@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import axios from './axios';
 import "./BASEADDDATA.css"
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const BASEADDDATA = () => {
     // State for each input field
     const [prixProduct, setPrixProduct] = useState('');
@@ -18,6 +21,7 @@ const BASEADDDATA = () => {
         formData.append('id', id);
         if (imgItem) {
             formData.append('imgItem', imgItem); // Append file object
+            toast.success("add with success")
         }
         formData.append('titleProduct', titleProduct);
 
@@ -29,6 +33,7 @@ const BASEADDDATA = () => {
             });
 
             console.log('Data sent successfully');
+            window.location.reload()
         } catch (error) {
             console.error(`This error occurred: ${error}`);
         }
@@ -73,6 +78,7 @@ const BASEADDDATA = () => {
                 placeholder="TitleProduct"
             />
             <button onClick={HandelRequest}>Add New Casquette</button>
+            <ToastContainer position='top-left'/>
         </div>
     );
 };

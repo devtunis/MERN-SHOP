@@ -19,3 +19,34 @@
     justify-content: center ;
     background-color: green;
 }
+
+
+
+@media screen and (max-width: 600px) {
+   
+    .CasquetteTitle{
+        background-color: black;
+        padding: 10px;
+        margin-top: 10px;
+        color: white;
+        text-align: center;
+        font-size: 24px;
+    }
+    .FatherProudct{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+      
+      
+    }
+    .Container__NOS_PRODUITS .FatherProudct{
+        display: flex;
+        flex-direction: column  ;
+        justify-content: center ;
+        background-color: white;
+        
+        
+    }
+
+    
+  }

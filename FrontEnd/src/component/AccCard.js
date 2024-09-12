@@ -1,11 +1,20 @@
 import React from 'react'
 import "./Acc.css"
-const AccCard = ({id,imgLink}) => {
+import { useGlobalContext } from './context/GlobalContext'
+const AccCard = ({id,imgLink,title}) => {
+   const {dispatch} = useGlobalContext()
+  const HandelPushStateMangement = ()=>{
+  
+ dispatch({
+  type :"CHANGE__SECTION__USER",
+  paylod :title
+ })
+  }
   return (
     <div className='cardAcc'>
 
         <div className='imgCardAcc'> <img src={imgLink}/></div>
-        <button>Découvrir nos casquettes</button>
+        <button onClick={HandelPushStateMangement}  >{title}</button>
     </div>
   )
 }

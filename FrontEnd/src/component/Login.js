@@ -97,7 +97,7 @@ useEffect(()=>{
     <div class="form-container">
            <input type="text" class="input" placeholder="Full Name"     value={username}  onChange={(e)=>{setUsername(e.target.value)}}      />
 			<input type="email" class="input" placeholder="Email"        value={email}  onChange={(e)=>{setEmail(e.target.value)}}   />
-			<input type="password" class="input" placeholder="Password"   value={password}  onChange={(e)=>{setPasword(e.target.value)}}   />
+			<input type="password" class="input" placeholder="Create new password"   value={password}  onChange={(e)=>{setPasword(e.target.value)}}   />
     </div>
     <button onClick={HandelClick}>Sign up</button>
 </div>

@@ -4,12 +4,21 @@ import React, { useReducer, createContext, useContext, useEffect } from "react";
 const initialState = {
   user: JSON.parse(localStorage.getItem("user")) || null,
   BasketProudct: JSON.parse(localStorage.getItem("BasketProudct")) || [],
-  auth: JSON.parse(localStorage.getItem("auth")) || null
+  auth: JSON.parse(localStorage.getItem("auth")) || null ,
+  Section_User : "Découvrir nos casquette"
 };
 
 // Reducer function
 const reducer = (state, action) => {
   switch (action.type) {
+    case "CHANGE__SECTION__USER":
+      return{
+        ...state,
+        Section_User : action.paylod
+      }
+
+
+
     case "ADD__TO__CARD":
       const updatedBasket = [ action.payload];
       localStorage.setItem("BasketProudct", JSON.stringify(updatedBasket)); // Save to localStorage
@@ -44,9 +53,10 @@ const GlobalContext = createContext();
 // Context provider component
 export const ContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  console.log(state)
+  console.log(state,"this currently state")
   useEffect(() => {
     // Sync user data with localStorage
+
     if (state.user) {
       localStorage.setItem("user", JSON.stringify(state.user));
     }
@@ -67,7 +77,8 @@ export const ContextProvider = ({ children }) => {
         dispatch,
         user: state.user,
         BasketProudct: state.BasketProudct,
-        auth: state.auth
+        auth: state.auth,
+        Section_User : state.Section_User
       }}
     >
       {children}

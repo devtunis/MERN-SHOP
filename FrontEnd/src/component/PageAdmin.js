@@ -3,6 +3,8 @@ import "./PageAdmin.css";
 import axios from "./axios";
 import { useGlobalContext } from './context/GlobalContext';
 import BASEADDDATA from './BASEADDDATA';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const PageAdmin = () => {
     const { auth } = useGlobalContext();
@@ -26,7 +28,8 @@ const PageAdmin = () => {
       try{
          const response =     await axios.delete(`dlp/${RemoveID}`)
          if(response){
-          alert("item succes delte it ")
+         
+          window.location.reload()
          }else{
           alert("this item not deltede ")
          }
@@ -50,7 +53,7 @@ const PageAdmin = () => {
             className="PageAdmin"
             style={auth.testAdmin === "true" ? { display: "flex" } : { display: "none" }}
         >
-            <h2>Welcome to Page Admin</h2>
+            <h2>Welcome to Page Admin </h2>
             <br />
             
             <div className="ContainerPageAdmin">
@@ -61,13 +64,14 @@ const PageAdmin = () => {
                             {usersForAdmin.map((item) => (
                                 <div className='cardData' key={item._id}>
                                     <h2><span>id: </span>{item._id}</h2>
-                                    <h2><span>username: </span>{item.username}</h2>
+                                    <h2 ><span>username: </span >{item.username}</h2>
+                                   
                                     <h2><span>email: </span>{item.email}</h2>
                                 </div>
                             ))}
                         </div>
                         <div className='card__casquette'>
-                            <div className='titleCard'>Casquette {userCasquette?.length}</div>
+                            <div className='titleCard'> Numero de Casquette - {userCasquette?.length}-</div>
                             <div className='containerCasquetetex'>
                                 {userCasquette.map((item) => (
                                     <div className='CardOwner' key={item._id}>

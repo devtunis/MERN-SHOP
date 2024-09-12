@@ -6,8 +6,7 @@ import { useGlobalContext } from './context/GlobalContext';
 import axios  from "./axios";
 
 const Casquette = () => {
-
-
+ 
   const [casquettes, setCasquettes] = useState([]);
 
   const GetDat = async () => {
@@ -21,9 +20,11 @@ const Casquette = () => {
   };
 
   useEffect(() => {
-    GetDat();           
+    GetDat(); 
+    console.log(casquettes)          
   }, []);
  
+  
 
   return (
     <div className='Casquette'>
@@ -43,6 +44,7 @@ const Casquette = () => {
           ))}
         </div>
       </div>
+      
     </div>
   );
 };
