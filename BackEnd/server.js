@@ -280,8 +280,9 @@ app.post("/identify", async (req, res) => {
     if (!users) {
       return res.status(404).json({ message: "User not found" });
     }
- // do condtion if he admin or not 
-    // Compare the provided password with the hashed password stored in the database
+    
+
+     
     const isMatch = password==users.password 
 
     if (isMatch) {
