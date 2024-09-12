@@ -21,7 +21,7 @@ const Casquette = () => {
 
   useEffect(() => {
     GetDat(); 
-    console.log(casquettes)          
+      
   }, []);
  
   
@@ -42,6 +42,7 @@ const Casquette = () => {
             titleProduct={item.titleProduct}
           />
           ))}
+
         </div>
       </div>
       

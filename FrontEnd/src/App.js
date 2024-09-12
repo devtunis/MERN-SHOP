@@ -15,7 +15,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Identify from "./component/Identify";
 import FirstView from "./component/FirstView";
-
+import FastView from "./component/FastView"
 const App = () => {
   const Move = useGlobalContext();
   const [FatherReducernn, setFatherReducernn] = useState("Découvrir nos casquette");
@@ -71,13 +71,13 @@ const App = () => {
               }
             />
             <Route path="/StoreCard" element={<StoreCad />} />
-            <Route path="/paymment" element={<ContactForm />} />
+            {/* <Route path="/paymment" element={<ContactForm />} /> */}
             <Route path="/l" element={<Login />} />
             <Route path="/Admin" element={<PageAdmin />} />
             <Route path="/Alerete" element={<Alerte />} />
             <Route path="/Identify" element={<Identify/>}/>
             <Route path="/" element={<FirstView/>}/>
-            
+            <Route path="/fastView" element={<FastView/>}/>
           </Routes>
         </Router>
       </ContextProvider>

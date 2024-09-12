@@ -5,12 +5,28 @@ const initialState = {
   user: JSON.parse(localStorage.getItem("user")) || null,
   BasketProudct: JSON.parse(localStorage.getItem("BasketProudct")) || [],
   auth: JSON.parse(localStorage.getItem("auth")) || null ,
-  Section_User : "Découvrir nos casquette"
+  Section_User : "Découvrir nos casquette",
+  fastView :JSON.parse(localStorage.getItem("fastView")) || null,
+  
 };
 
 // Reducer function
 const reducer = (state, action) => {
+
+
+
   switch (action.type) {
+    case "Fast__View":{
+      const UpdateFastView = action.paylodF
+      localStorage.setItem("fastView",JSON.stringify(UpdateFastView))
+      return{                     // do this in local storage
+        ...state,
+        fastView:action.paylodF
+      }
+    }
+
+
+
     case "CHANGE__SECTION__USER":
       return{
         ...state,
@@ -20,7 +36,7 @@ const reducer = (state, action) => {
 
 
     case "ADD__TO__CARD":
-      const updatedBasket = [ action.payload];
+      const updatedBasket = [action.payload];
       localStorage.setItem("BasketProudct", JSON.stringify(updatedBasket)); // Save to localStorage
       return {
         ...state,
@@ -78,7 +94,8 @@ export const ContextProvider = ({ children }) => {
         user: state.user,
         BasketProudct: state.BasketProudct,
         auth: state.auth,
-        Section_User : state.Section_User
+        Section_User : state.Section_User,
+        fastView : state.fastView
       }}
     >
       {children}

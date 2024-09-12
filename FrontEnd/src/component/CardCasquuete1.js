@@ -6,14 +6,18 @@ import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 const CardCasquuete1 = ({ id, imgItem, titleProduct, PrixProduct }) => {
-  console.log({ id, imgItem, titleProduct, PrixProduct });
+ // console.log({ id, imgItem, titleProduct, PrixProduct });
   const Nav = useNavigate()
-  // Access both dispatch and auth from GlobalContext
+
+
+
   const { dispatch, auth } = useGlobalContext(); 
   const [userData, setUserData] = useState([]);
 const notify = () => toast("ajouter dans payment");
+
+
   const handleData = async () => {
-    console.log(id, imgItem, titleProduct, PrixProduct);
+  //  console.log(id, imgItem, titleProduct, PrixProduct);
       !auth && Nav("/")
     try {
       // Update the backend
@@ -44,10 +48,25 @@ const notify = () => toast("ajouter dans payment");
     }
   };
 
+  const HandelIamgeWIthDataReactAndseeThisPictuer = ()=>{
+    console.log(id, imgItem, titleProduct, PrixProduct,"currentReactComponent");
+    dispatch({
+      type:"Fast__View",
+      paylodF:{
+        id,
+        imgItem,
+        titleProduct,
+        PrixProduct
+      }
+    })
+     Nav("/fastView")
+  }
   return (
-    <div className="CardCasquuete1">
+    <div className="CardCasquuete1" 
+    
+    style={{cursor:"pointer"}}>
       <div className="imgCardQas">
-        <img src={imgItem} alt="product" />
+        <img src={imgItem} alt="product" onClick={HandelIamgeWIthDataReactAndseeThisPictuer} />
       </div>
       <div className="TitleImgCarde a">{titleProduct}</div>
       <br />
