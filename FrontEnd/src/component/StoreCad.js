@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useGlobalContext } from './context/GlobalContext';
-import axios from "axios";
+import axios from "./axios";
 import './NavNar.css';
 import './Store.css';
+import GO from './GO';
 
 const StoreCad = () => {
+ 
   const [currently, setCurrently] = useState([]);
   const { BasketProudct, dispatch, auth } = useGlobalContext();
   const navigate = useNavigate();
@@ -13,14 +15,14 @@ const StoreCad = () => {
 
   const handleRemove = async (id) => {
     try {
-      console.log(id);
-      await axios.delete(`http://localhost:5000/removeItem/${auth.userId}?id1=${id}`);
+       
+      await axios.delete(`/removeItem/${auth.userId}?id1=${id}`);
     } catch (error) {
       console.log(`This error occurred: ${error}`);
     }
 
     try {
-      const userResponse = await axios.get(`http://localhost:5000/Udata/${auth.userId}`);
+      const userResponse = await axios.get(`/Udata/${auth.userId}`);
       console.log(userResponse.data);
 
       dispatch({
@@ -48,7 +50,7 @@ const StoreCad = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get(`http://localhost:5000/findoneUser/${auth.userId}`);
+      const response = await axios.get(`/findoneUser/${auth.userId}`);
       const flattenedData = response.data.flat();
       setCurrently(flattenedData);
     } catch (error) {
@@ -67,7 +69,7 @@ const StoreCad = () => {
       <div className='Payment'>
         <p className='titleWelcome'>Welcome <span style={{ color: "purple" }}>{auth.username}</span></p>
         <div className='sectionPayment'>
-          <div className='RemoveSection' onClick={handleNav}>X</div>
+          <div className='RemoveSection' onClick={handleNav} style={{color:"black"}}>X</div>
           <div className='ContainerSectionPayment'>
             {BasketProudct.flat().length > 0 ? (
               BasketProudct.flat().map((item) => (
@@ -84,12 +86,24 @@ const StoreCad = () => {
                       <button>Buy</button>
                       <button onClick={() => handleRemove(item.id)}>Remove</button>
                     </div>
+                    
                   </div>
                 </div>
               ))
             ) : (
-              <p>No items in your basket go buy something <Link to={"/StoreData"}>Store</Link></p>
+              <div style={{display:"flex",justifyContent:"center"}}>
+
+                  <GO/> 
+              </div>
+              
+                
             )}
+
+
+
+
+
+
           </div>
           <div className='x'>
             {BasketProudct.flat().length > 0 && (

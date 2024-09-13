@@ -1,0 +1,49 @@
+ 
+
+.FooterContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+ 
+    padding: 20px;
+    border-top: 1px solid #ddd;
+    background-color: black;
+   
+  }
+  
+  .levl1 {
+    margin: 10px 0;
+    text-align: center;
+     
+  }
+  
+  .levl1 h2 {
+    font-size: 1rem;
+    color: #333;
+    margin: 0;
+  }
+  
+  .levl1 img {
+    width: 24px;
+    height: 24px;
+    margin: 0 10px;
+    vertical-align: middle;
+    transition: transform 0.3s ease;
+    border-radius: 10px;
+  }
+  
+  .levl1 img:hover {
+    transform: scale(1.1);
+  }
+  
+  .levl1 a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+  }
+  
+  .levl1 a:hover {
+    text-decoration: underline;
+  }
+  

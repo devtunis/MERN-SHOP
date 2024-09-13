@@ -16,7 +16,7 @@
 }
 
 .nav__logo {
-    display: flex;
+     display: flex;
      width: 600px;
      flex-direction: column;
  
@@ -43,13 +43,13 @@ li {
 }
 
 .sectionPayment {
-    background-color: rgb(99, 96, 96);
+    /* background-color: rgb(192, 188, 188); */
     width: 100%;
     height: 100vh;
 }
 
 .ContainerSectionPayment {
-    background-color: rgb(228, 226, 227);
+    
     width: 100%;
 }
 

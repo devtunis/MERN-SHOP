@@ -7,7 +7,6 @@ const initialState = {
   auth: JSON.parse(localStorage.getItem("auth")) || null ,
   Section_User : "Découvrir nos casquette",
   fastView :JSON.parse(localStorage.getItem("fastView")) || null,
-  
 };
 
 // Reducer function

@@ -1,16 +1,21 @@
 import React, { useState } from 'react';
 import axios from './axios';
-import "./BASEADDDATA.css"
+import "./BASEADDDATA.css";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const BASEADDDATA = () => {
     // State for each input field
     const [prixProduct, setPrixProduct] = useState('');
-    const [id, setId] = useState('');
+    const [id, setId] = useState(''); // This state can be removed if you generate the ID automatically
     const [imgItem, setImgItem] = useState(null);
     const [titleProduct, setTitleProduct] = useState('');
     const [imgPreview, setImgPreview] = useState(''); // State for image preview URL
+
+    // Function to generate a unique ID
+    const generateId = () => {
+        return '_' + Math.random().toString(36).substr(2, 9);
+    };
 
     // Handler for form submission
     const HandelRequest = async (e) => {
@@ -18,10 +23,10 @@ const BASEADDDATA = () => {
 
         const formData = new FormData();
         formData.append('PrixProduct', prixProduct);  
-        formData.append('id', id);
+        formData.append('id', generateId()); // Generate and append a unique ID
         if (imgItem) {
             formData.append('imgItem', imgItem); // Append file object
-            toast.success("add with success")
+            toast.success("Added with success");
         }
         formData.append('titleProduct', titleProduct);
 
@@ -33,7 +38,7 @@ const BASEADDDATA = () => {
             });
 
             console.log('Data sent successfully');
-            window.location.reload()
+            window.location.reload();
         } catch (error) {
             console.error(`This error occurred: ${error}`);
         }
@@ -54,19 +59,15 @@ const BASEADDDATA = () => {
 
     return (
         <div className='containerX'>
-            {imgPreview && <img src={imgPreview} alt="Preview" style={{ width: '200px', height: 'auto' }} />}
+            {imgPreview && <img src={imgPreview} alt="Preview" style={{ width: '100px', height: '100px' }} />}
             <input
-                type="text"
+                className='prixProudctSection'
+                type="number"
                 value={prixProduct}
                 onChange={(e) => setPrixProduct(e.target.value)}
                 placeholder="PrixProduct"
             />
-            <input
-                type="text"
-                value={id}
-                onChange={(e) => setId(e.target.value)}
-                placeholder="ID"
-            />
+         
             <input
                 type="file"
                 onChange={handleFileChange}

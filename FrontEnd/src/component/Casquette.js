@@ -4,9 +4,9 @@ import ProudctCasquette from './ApiCasquette'; // Ensure this contains your prod
 import CardCasquuete1 from './CardCasquuete1';
 import { useGlobalContext } from './context/GlobalContext';
 import axios  from "./axios";
-
-const Casquette = () => {
  
+const Casquette = () => {
+    
   const [casquettes, setCasquettes] = useState([]);
 
   const GetDat = async () => {
@@ -37,7 +37,7 @@ const Casquette = () => {
             <CardCasquuete1
             id={item.id}
             key={item._id}
-            imgItem={`http://localhost:5000/${item.imgItem}`} 
+            imgItem={`${process.env.REACT_APP_API_URL}/${item.imgItem}`} 
             PrixProduct ={item.PrixProduct}
             titleProduct={item.titleProduct}
           />

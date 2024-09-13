@@ -25,7 +25,7 @@ const Alerte = () => {
         <div key={item._id}>
           <h3>{item.titleProduct}</h3>
           <img
-            src={`http://localhost:5000/${item.imgItem}`}
+            src={`${process.env.REACT_APP_API_URL}/${item.imgItem}`}
             alt={item.titleProduct}
             style={{ width: '200px', height: 'auto' }}
           />

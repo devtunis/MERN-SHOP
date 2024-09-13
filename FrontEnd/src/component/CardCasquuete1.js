@@ -3,7 +3,7 @@ import { useGlobalContext } from "./context/GlobalContext";
 import "./CardCasquuete1.css";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import axios from "axios";
+import axios from "./axios";
 import { useNavigate } from "react-router-dom";
 const CardCasquuete1 = ({ id, imgItem, titleProduct, PrixProduct }) => {
  // console.log({ id, imgItem, titleProduct, PrixProduct });
@@ -16,13 +16,26 @@ const CardCasquuete1 = ({ id, imgItem, titleProduct, PrixProduct }) => {
 const notify = () => toast("ajouter dans payment");
 
 
+const  generateId=()=>{
+  let id1 = "";
+  while (id1.length <= 8) {
+      id1 += String.fromCharCode(Math.floor(Math.random() * (91 - 65)) + 65);
+  }
+  return id1;
+}
+
+
+
+
+
+
   const handleData = async () => {
   //  console.log(id, imgItem, titleProduct, PrixProduct);
       !auth && Nav("/")
     try {
       // Update the backend
-      await axios.put(`http://localhost:5000/x/${auth.userId}`, {
-        id, 
+      await axios.put(`/x/${auth.userId}`, {
+        id:generateId(), 
         imgItem,
         titleProduct,  // Typo fixed here
         userId: auth.userId,
@@ -31,7 +44,7 @@ const notify = () => toast("ajouter dans payment");
        
       notify()
       // Fetch updated user data
-      const response = await axios.get(`http://localhost:5000/findoneUser/${auth.userId}`);
+      const response = await axios.get(`/findoneUser/${auth.userId}`);
       setUserData(response.data); // Update the state with fetched data
       console.log(response.data, "response data");
 
@@ -72,9 +85,10 @@ const notify = () => toast("ajouter dans payment");
       <br />
       <div className="PrixTitle a">{PrixProduct} €</div>
       <br />
-      <button onClick={handleData}>      <span class="material-symbols-outlined">
-shopping_cart
-</span></button>
+      <button onClick={handleData} >     
+          <span className="material-symbols-outlined">shopping_cart</span>
+
+          </button>
       
  
     </div>

@@ -5,13 +5,27 @@ import { useGlobalContext } from './context/GlobalContext';
 import BASEADDDATA from './BASEADDDATA';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Link } from 'react-router-dom';
+import Copy from './Copy';
 
 const PageAdmin = () => {
     const { auth } = useGlobalContext();
     const [usersForAdmin, setUsersForAdmin] = useState([]);
     const [userCasquette, setUserCasquette] = useState([]);
     const [RemoveID,setRemoveId] = useState("")
-    // useCallback to memoize the function
+   
+
+ 
+
+
+
+
+
+
+
+
+
+
     const fetchApiData = useCallback(async () => {
         try {
             const response = await axios.get("/ADMIN");
@@ -40,6 +54,8 @@ const PageAdmin = () => {
       
     }
 
+
+
     useEffect(() => {
         fetchApiData();
     }, [fetchApiData]);
@@ -55,7 +71,8 @@ const PageAdmin = () => {
         >
             <h2>Welcome to Page Admin </h2>
             <br />
-            
+            <Link to={"/StoreData"}>   <span className="material-symbols-outlined">local_convenience_store</span></Link>
+
             <div className="ContainerPageAdmin">
                 <div className="x dataFromDataBase">
                     <div className='User__Data__Base'>
@@ -75,8 +92,18 @@ const PageAdmin = () => {
                             <div className='containerCasquetetex'>
                                 {userCasquette.map((item) => (
                                     <div className='CardOwner' key={item._id}>
-                                        <p>{item._id}</p>
-                                        <img src={`http://localhost:5000/${item.imgItem}`} alt={`Casquette ${item._id}`} />
+                                       
+                       <p style={{display:"flex",justifyContent:"center",alignItems:"center",gap:"4px"}}>
+                        
+                         
+                           <Copy  passId={item._id} />
+                           
+                           
+                            <span style={{fontSize:"16px",fontWeight:"bold"}}>{item._id}  </span>   
+                                           
+                            </p> 
+                                         
+                                        <img src={`${process.env.REACT_APP_API_URL}/${item.imgItem}`} alt={`Casquette ${item._id}`} />
                                     </div>
                                 ))}
                             </div>

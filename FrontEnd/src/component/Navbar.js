@@ -40,10 +40,11 @@ const Navbar = () => {
     return (
         <div className='container__nav__bar'>
             
+            
             <div className='logo'>
             
-            <Link to={"/Admin"} style={{color:auth.username=="admin"?"red":"black",display:auth.username=="admin"?"flex":"none",textDecoration:"none",display:"flex",alignItems:"center",gap:"10px"}}>MyStore
-            <span class="material-symbols-outlined">
+            <Link to={"/Admin"} style={{color:auth.username=="admin"?"red":"black",display:auth.username=="admin"?"flex":"none",textDecoration:"none",alignItems:"center",gap:"10px"}}>MyStore
+            <span className="material-symbols-outlined">
             local_convenience_store
             </span>
             </Link>

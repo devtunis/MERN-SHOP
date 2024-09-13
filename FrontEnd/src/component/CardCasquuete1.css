@@ -1,5 +1,6 @@
 .CardCasquuete1{
     border: 3px solid black;
+    padding: 4px;
     margin: 3px;
     width: 24%;
     height:auto;
@@ -46,7 +47,7 @@
        flex-direction: column;
        justify-content: center;
        align-items: center;
-       background-color: red;
+       /* background-color: red; */
 
       img{
         width: 80%;
