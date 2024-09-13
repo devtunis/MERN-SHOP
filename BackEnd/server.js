@@ -5,12 +5,18 @@
     import cors from "cors"
     import multer from "multer";
     import path from "path";
-import { error } from "console";
+    import { error } from "console";
+    import dotenv from 'dotenv';
+    import bcrypt from 'bcryptjs'; // Add this import statement
+
+    
+    dotenv.config(); // Load environment variables
+
     const app = express();
-    const port = 5000;
+    const port = process.env.PORT  
 
     // MongoDB connection string (ensure <db_password> is replaced or use environment variables)
-    const connection_url ='mongodb+srv://admin:kpO9SDWy7bCBV7gC@cluster0.ftnr7.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
+    const connection_url =process.env.BASEURL
 
     // Connect to MongoDB using Mongoose
     mongoose.connect(connection_url, {
@@ -58,23 +64,33 @@ app.get("/ADMIN",async(req,res)=>{
 })
 
 
-    app.post('/register', async (req, res) => {
-        try {
-            const { username, email, password ,testAdmin } = req.body;
-            
-            if (!username || !email || !password)  {
-                return res.status(400).json({ error: 'Username, email, and password are required' });
-            }
-            
-            // Create a new user
-            const newUser = new Users({ username, email, password,testAdmin});
-            await newUser.save();
-            
-            res.status(201).json({ message: 'User registered successfully!',data__user:newUser  });
-        } catch (error) {
-            res.status(400).json({ error: error.message });
-        }
-    });
+app.post('/register', async (req, res) => {
+  try {
+      const { username, email, password, testAdmin } = req.body;
+      
+      if (!username || !email || !password) {
+          return res.status(400).json({ error: 'Username, email, and password are required' });
+      }
+      
+      // Hash the password
+      const salt = await bcrypt.genSalt(10); // Generate a salt
+      const hashedPassword = await bcrypt.hash(password, salt); // Hash the password with the salt
+
+      // Create a new user
+      const newUser = new Users({
+          username,
+          email,
+          password: hashedPassword, // Save the hashed password
+          testAdmin
+      });
+
+      await newUser.save();
+      
+      res.status(201).json({ message: 'User registered successfully!', data__user: newUser });
+  } catch (error) {
+      res.status(400).json({ error: error.message });
+  }
+});
     
     
     app.get("/findoneUser/:id",async(req,res)=>{
@@ -265,38 +281,36 @@ app.get("/ADMIN",async(req,res)=>{
 
 
     
-
- 
-
-
-
 app.post("/identify", async (req, res) => {
   const { username, password } = req.body;
 
+  if (!username || !password) {
+    return res.status(400).json({ message: "Username and password are required" });
+  }
+
   try {
     // Fetch the user based on username
-    const users = await Users.findOne({ username: username});
+    const user = await Users.findOne({ username });
 
-    if (!users) {
+    if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
-    
 
-     
-    const isMatch = password==users.password 
+    // Compare the provided password with the hashed password in the database
+    const isMatch = await bcrypt.compare(password, user.password);
 
     if (isMatch) {
       // Authentication successful
-      res.status(200).json({users});
-    } 
+      res.status(200).json({ user });
+    } else {
+      // Authentication failed
+      res.status(401).json({ message: "Invalid credentials" });
+    }
   } catch (error) {
-    console.log(`Error: ${error}`);
+    console.error(`Error: ${error.message}`);
     res.status(500).json({ message: "An error occurred" });
   }
 });
-
-
-
 
     // Start the server
     app.listen(port, () => {
