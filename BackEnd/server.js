@@ -277,7 +277,72 @@ app.post('/postLunette', upload.single('imgItem'), async (req, res) => {
 
 
 
+// app.put("/lx/:id", async (req, res) => {
+//   try {
+//     const { PrixProduct, id, imgItem, titleProduct, userId } = req.body;
 
+//     // Find the user by ID
+//     const user__response = await Users.findById(req.params.id);
+//     console.log(user__response);
+
+//     if (!user__response) {
+//       return res.status(404).json({ message: "User not found" });
+//     }
+
+//     // Ensure that the basket array exists in the user's schema
+//     const UpdateData = await Users.updateOne(
+//       { _id: req.params.id },
+//       {
+//         $push: {
+//           basket: { PrixProduct, id, imgItem, titleProduct, userId }, // Corrected typo
+//         },
+//       }
+//     );
+
+//     // Check if the document was modified
+//     if (UpdateData.modifiedCount === 0) {
+//       return res.status(404).json({ message: "No changes were made" });
+//     }
+
+//     res.status(200).json({ message: "Basket updated successfully" });
+//   } catch (error) {
+//     console.log(`Error encountered: ${error}`);
+//     res.status(500).json({ message: "Server error", error });
+//   }
+// });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+app.get("/LunneteImage",async(req,res)=>{
+
+  try{
+    const reponse = await  Lunette.find()
+    res.status(200).json(reponse)
+  }
+  catch(eroor){
+    console.log(`this eroor by ${eroor}`)
+    res.status(404).json({message : error})
+  }
+})
 
 
 
@@ -360,4 +425,4 @@ app.post("/identify", async (req, res) => {
         console.log(`Server running at http://localhost:${port}`);
     });
 
-    
+ 
