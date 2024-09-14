@@ -10,7 +10,7 @@
     import dotenv from 'dotenv';
     import bcrypt from 'bcryptjs'; // Add this import statement
 
-    
+    // this new Thing in server.js
     dotenv.config(); // Load environment variables
 
     const app = express();
