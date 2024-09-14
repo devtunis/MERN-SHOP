@@ -1,5 +1,6 @@
     import Users from "./dbMode.js"
     import Casquette from "./dbModel2.js"
+    import Lunette from "./dbModel3.js"
     import express from "express"
     import mongoose  from "mongoose";
     import cors from "cors"
@@ -28,7 +29,7 @@
 
     // Middleware setup
     app.use(cors({
-        origin: "http://localhost:3000",                  
+        origin: process.env.ORIGINDOMAIN,                  
         methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
         allowedHeaders: ["Origin", "X-Requested-With", "Content-Type", "Accept", "Authorization"],
         credentials:true,
@@ -188,6 +189,16 @@ app.post('/register', async (req, res) => {
         }
     })
 
+
+
+
+
+
+
+
+
+
+
     
     const storage = multer.diskStorage({
         destination: function (req, file, cb) {
@@ -199,7 +210,7 @@ app.post('/register', async (req, res) => {
       });
       
       const upload = multer({ storage: storage });
-      
+     
       // Endpoint to handle file upload and other form data
       app.post('/postCasquette', multer({ dest: 'uploads/' }).single('imgItem'), async (req, res) => {
         const { PrixProduct, id, titleProduct } = req.body;
@@ -228,12 +239,41 @@ app.post('/register', async (req, res) => {
         }
     });
 
+ 
+// -------------------------POST LUNETTE SECTION---------------------------------------
+app.post('/postLunette', upload.single('imgItem'), async (req, res) => {
+  console.log('Request Body:', req.body);
+  console.log('Uploaded File:', req.file);
 
+  const { PrixProduct, id, titleProduct } = req.body;
+  const imgItem = req.file ? req.file.path : null;
 
+  try {
+      if (!PrixProduct || !id || !titleProduct) {
+          return res.status(400).json({ message: "All fields (PrixProduct, id, titleProduct) are required." });
+      }
 
+      // Check if a Lunette with the same ID already exists
+      const existingLunette = await Lunette.findOne({ id });
 
+      if (existingLunette) {
+          return res.status(400).json({ message: "Lunette with this ID already exists." });
+      }
 
+      // Create a new Lunette
+      const newLunette = new Lunette({ PrixProduct, id, imgItem, titleProduct });
 
+      // Save the new Lunette to the database
+      await newLunette.save();
+
+      // Respond with the created Lunette
+      res.status(200).json(newLunette);
+
+  } catch (error) {
+      console.error(`Error: ${error.message}`, error);
+      res.status(500).json({ message: "An error occurred while processing your request." });
+  }
+});
 
 
 
@@ -253,6 +293,9 @@ app.post('/register', async (req, res) => {
       res.status(500).json({ message: "An error occurred while fetching casquettes." });
     }
   });
+
+
+
 
   app.delete("/dlp/:id", async (req, res) => {
     const { id } = req.params;
