@@ -13,7 +13,7 @@ const CardCasquuete1 = ({ id, imgItem, titleProduct, PrixProduct }) => {
 
   const { dispatch, auth } = useGlobalContext(); 
   const [userData, setUserData] = useState([]);
-const notify = () => toast("ajouter dans payment");
+  const notify = () => toast("ajouter dans payment");
 
 
 const  generateId=()=>{
@@ -77,7 +77,7 @@ const  generateId=()=>{
   return (
     <div className="CardCasquuete1" 
     
-    style={{cursor:"pointer"}}>
+    style={{cursor:"all-scroll"}}>
       <div className="imgCardQas">
         <img src={imgItem} alt="product" onClick={HandelIamgeWIthDataReactAndseeThisPictuer} />
       </div>

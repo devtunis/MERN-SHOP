@@ -1,136 +1,118 @@
-.CardCasquuete1{
-    border: 3px solid black;
-    padding: 4px;
-    margin: 3px;
-    width: 24%;
-    height:auto;
-    text-align: center;
-    font-size: 20px;
-    text-transform: capitalize;
-    font-family: sans-serif;
-    img{
-        width: 100%;
-        height: 100%;
-    } /* From Uiverse.io by barisdogansutcu */ 
-    button {
-      padding: 17px 40px;
-      border-radius: 50px;
-      cursor: pointer;
-      border: 0;
-      background-color: black;
-      color: #fff;
-      box-shadow: rgb(0 0 0 / 5%) 0 0 8px;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      font-size: 10px;
-      transition: all 0.5s ease;
-      width: 200px;
-    }
-    
-    button:hover {
-      letter-spacing: 3px;
-      background-color: hsl(261deg 80% 48%);
-      color: hsl(0, 0%, 100%);
-      box-shadow: rgb(93 24 220) 0px 7px 29px 0px;
-    }
-    
-    button:active {
-      letter-spacing: 3px;
-      background-color: hsl(261deg 80% 48%);
-      color: hsl(0, 0%, 100%);
-      box-shadow: rgb(93 24 220) 0px 0px 0px 0px;
-      transform: translateY(10px);
-      transition: 100ms;
-    }
-    .imgCardQas{
-       display: flex;
-       flex-direction: column;
-       justify-content: center;
-       align-items: center;
-       /* background-color: red; */
 
-      img{
-        width: 80%;
-        object-fit: cover;
-      }
-    }
-    
-}
-
-.Button button{
-    border-radius: 10px;
-    padding: 3px;
-}
-
-
-
-.a{
-  font-family: "SUSE", sans-serif;
-  font-size: 30px;
-  font-weight: bold;
-
-}
  
- :root {
-  --index-color: #f85109;
+
+.CardCasquuete1 {
+  border: 3px solid transparent;
+  padding: 4px;
+  margin: 3px;
+  width: 13%;
+  height: auto;
+  text-align: center;
+  font-size: 20px;
+  text-transform: capitalize;
+  font-family: sans-serif;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+  cursor: pointer;
+
   
  
+
+
+.imgCardQas {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-.PrixTitle{
+
+.imgCardQas img {
+  width: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+/* .imgCardQas img:hover {
+  transform: scale(1.1);
+} */
+
+.TitleImgCarde {
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 10px;
+  color: #333;
+}
+
+.PrixTitle {
+  font-size: 22px;
   color: var(--index-color);
+  margin-top: 8px;
 }
 
+button {
+  padding: 15px 40px;
+  border-radius: 50px;
+  cursor: pointer;
+  border: none;
+  background: linear-gradient(135deg, #f85109, #ff6209);
+  color: white;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  text-transform: uppercase;
+  font-size: 14px;
+  transition: all 0.5s ease;
+  width: 200px;
+  margin-top: 15px;
+}
+
+button:hover {
+  background: linear-gradient(135deg, #ff6209, #f85109);
+  box-shadow: 0 7px 29px rgba(93, 24, 220, 0.4);
+  letter-spacing: 2px;
+}
+
+button:active {
+  transform: translateY(5px);
+  transition: transform 100ms;
+ 
+}
+
+
+}
+.CardCasquuete1:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Mobile-friendly adjustments */
 @media screen and (max-width: 600px) {
-  .CardCasquuete1{
-
-   margin-top: 10px;
+  .CardCasquuete1 {
     width: 100%;
-    height:600px;
-    text-align: center;
-    font-size: 20px;
-    text-transform: capitalize;
-    font-family: sans-serif;
-    img{
-        width: 85%;
-        height: 100%;
-    }   
-    button {
-      width: 80%;
-      padding: 17px 40px;
-      border-radius: 50px;
-      cursor: pointer;
-      border: 0;
-      color: white;
-      background-color: black;
-      box-shadow: rgb(0 0 0 / 5%) 0 0 8px;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      font-size: 20px;
-      transition: all 0.5s ease;
-      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    }
+    margin-top: 10px;
+    height: auto;
+  }
+
+  .CardCasquuete1:hover {
     
-    button:hover {
-      letter-spacing: 3px;
-      background-color: hsl(261deg 80% 48%);
-      color: hsl(0, 0%, 100%);
-      box-shadow: rgb(93 24 220) 0px 7px 29px 0px;
-    }
-    
-    button:active {
-      letter-spacing: 3px;
-      background-color: hsl(261deg 80% 48%);
-      color: hsl(0, 0%, 100%);
-      box-shadow: rgb(93 24 220) 0px 0px 0px 0px;
-      transform: translateY(10px);
-      transition: 100ms;
-    }
-    
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+
+  
+
+  .imgCardQas img {
+    width: 100%;
+  }
+
+  /* button {
+    width: 90%;
+    font-size: 16px;
+    padding: 15px;
+  } */
 }
 
-.Button button{
-    border-radius: 10px;
-    padding: 3px;
-}
-
+:root {
+  --index-color: #ff5722;
 }

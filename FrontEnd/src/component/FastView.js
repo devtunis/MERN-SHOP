@@ -4,7 +4,7 @@ import Navbar from './Navbar'
 import "./FastView.css"
 const FastView = () => {
   const {fastView}  = useGlobalContext()
-  console.log(fastView)
+   
   return (
     <>
   <Navbar/>
@@ -15,7 +15,7 @@ const FastView = () => {
     <div className='FastViewInside'>
 
       <div className='FastViewInsideImg'>
-          <img src={fastView.imgItem} />
+          <img src={fastView.imgItem} style={{cursor:"not-allowed"}} />
       
       </div>
 
@@ -27,7 +27,7 @@ const FastView = () => {
   <small>+ livraison à partir de 10.00 €</small>
   <div className='FastViewInsideShoppin'>
    
-    <button> <span class="material-symbols-outlined">shopping_cart_checkout</span> J'achéte</button>
+    <button> <span className="material-symbols-outlined">shopping_cart_checkout</span> J achéte</button>
   </div>
   
       </div>

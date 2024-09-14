@@ -7,6 +7,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Link } from 'react-router-dom';
 import Copy from './Copy';
+import LunetteForm from './LunetteForm';
 
 const PageAdmin = () => {
     const { auth } = useGlobalContext();
@@ -150,8 +151,12 @@ const PageAdmin = () => {
                         <button onClick={HandelDelte}>DELETE</button>
                     </div>
                 </div>
+                <div className="x DataBaseLunnete">
+                    <LunetteForm/>
+                  
+                </div>
                 <div className="x DataBaseSAQUE"></div>
-                <div className="x DataBaseLunnete"></div>
+               
             </div>
         </div>
     );

@@ -12,7 +12,7 @@ const Casquette = () => {
   const GetDat = async () => {
     try {
       const response = await axios.get('/casquettes');
-      console.log(response.data,"<=>")
+      //console.log(response.data,"<=>")
       setCasquettes(response.data);
     } catch (error) {
       console.log(`This error occurred: ${error}`);
@@ -30,7 +30,7 @@ const Casquette = () => {
     <div className='Casquette'>
       <div className='CasquetteTitle'>NOS PRODUITS</div>
 
-      <div className='Container__NOS_PRODUITS'>
+      <div className='Container__NOS_PRODUITS'  >
         <div className='FatherProudct'>
           {casquettes.map((item) => (
            

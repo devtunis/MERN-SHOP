@@ -5,7 +5,8 @@
 }
 
 .container__nav__bar {
-    background-color: black;
+    background: rgb(0,0,0);
+    background: linear-gradient(90deg, rgba(0,0,0,1) 11%, rgba(15,1,1,1) 99%);
     color: white;
     display: flex;
     align-items: center;

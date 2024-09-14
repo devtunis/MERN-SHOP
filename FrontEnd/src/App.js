@@ -1,13 +1,12 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "./component/Navbar";
 import Proudct from "./component/ApiProduct";
 import AccCard from "./component/AccCard";
 import Casquette from "./component/Casquette";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import StoreCad from "./component/StoreCad";
-import { ContextProvider, useGlobalContext } from "./component/context/GlobalContext"; 
+import { ContextProvider, useGlobalContext } from "./component/context/GlobalContext";
 import "./index.css";
-// import ContactForm from "./component/PAYMENT";
 import Login from "./component/Login";
 import PageAdmin from "./component/PageAdmin";
 import Alerte from "./Alerte";
@@ -15,61 +14,65 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Identify from "./component/Identify";
 import FirstView from "./component/FirstView";
-import FastView from "./component/FastView"
+import FastView from "./component/FastView";
 import FooterContainer from "./component/FooterContainer";
-
+import Lunette from "./component/Lunette";
 
 const App = () => {
   const Move = useGlobalContext();
-   const [FatherReducernn, setFatherReducernn] = useState("Découvrir nos casquette");
-  
+  const [FatherReducernn, setFatherReducernn] = useState("Découvrir nos casquette");
+  const [Data, setData] = useState("");
+  const [Counter, setCounter] = useState(0);
+
   useEffect(() => {
     if (Move?.Section_User) {
-      setFatherReducernn(Move?.Section_User);
+      setFatherReducernn(Move.Section_User);
     }
-    console.log(Move?.Section_User, '<== Section_User');
   }, [Move?.Section_User]);
 
+  // Update the image every 5 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCounter(prevCounter => (prevCounter + 1) % 3);
+    }, 8000);
 
-  
-  // Dynamically render component based on FatherReducernn value
-  // const renderComponent = () => {
-  //   switch (FatherReducernn) {
-  //     case "Découvrir nos casquette":
-  //       return <Casquette />;
-  //     case "Découvrir nos sac":
-  //       return <p>Sac Component (Coming Soon)</p>;
-  //     default:
-  //       return <p>No component found for this section</p>;
-  //   }
-  // };
-  useEffect(()=>{
-    console.log(Move)
-   },[])
-    
+    return () => clearInterval(interval); // Cleanup the interval on component unmount
+  }, []);
+
+  const apiIamge = [
+    { img1: "./iamges/img2.png" },
+    { img1: "./iamges/img4.png" },
+    { img1: "./iamges/img2.png" },
+   
+  ];
+
+  useEffect(() => {
+    setData(apiIamge[Counter].img1); // Corrected key name to 'img1'
+  }, [Counter]);
+
   return (
-    <React.StrictMode>      
+    <React.StrictMode>
       <ContextProvider>
         <Router>
           <Routes>
             <Route
               path="/StoreData"
               element={
-                <> 
+                <>
                   <Navbar />
                   <div className="ContainerImages">
-                    <img src="./iamges/img2.png" alt="Main Store" />
+                    {/* Image Display */}
+                    <img src={Data} alt="Dynamic" />
                   </div>
                   <div className="Acceuil__NavBar">
                     <div id="Ac">Acceuil</div>
-                    <div className="itemAcceuilA" >
+                    <div className="itemAcceuilA">
                       {Proudct.map((item) => (
                         <AccCard key={item.id} id={item.id} imgLink={item.imgLink} title={item.title} />
-                      ))} 
+                      ))}
                     </div>
-                   <Casquette/>
-                   <FooterContainer/>
-                      
+                    <Casquette />
+                    <FooterContainer />
                   </div>
                 </>
               }
@@ -79,9 +82,10 @@ const App = () => {
             <Route path="/l" element={<Login />} />
             <Route path="/Admin" element={<PageAdmin />} />
             <Route path="/Alerete" element={<Alerte />} />
-            <Route path="/Identify" element={<Identify/>}/>
-            <Route path="/" element={<FirstView/>}/>
-            <Route path="/fastView" element={<FastView/>}/>
+            <Route path="/Identify" element={<Identify />} />
+            <Route path="/" element={<FirstView />} />
+            <Route path="/fastView" element={<FastView />} />
+            <Route path="/Lunette" element={<Lunette />} />
           </Routes>
         </Router>
       </ContextProvider>

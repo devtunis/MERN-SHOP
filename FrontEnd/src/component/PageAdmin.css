@@ -123,16 +123,16 @@
 .APPcontainerData{
     height: 40%;
     overflow-x: auto;
-}
-
+  }
+/*
 @media only screen and (max-width: 600px) {
     .ContainerPageAdmin {
         flex-direction: column;
-        height: auto; /* Adjust based on your needs */
+        height: auto;  
     }
     .dataFromDataBase, .DataBaseCasquette, .DataBaseSAQUE, .DataBaseLunnete {
-        width: 100%; /* Make them stack vertically */
-        height: auto; /* Adjust based on content */
+        width: 100%;  
+        height: auto;  
     }
     .cardData {
         width: 100%;
@@ -155,16 +155,16 @@
         align-items: center;
         gap: 10px;
         margin-top: 10px;
-        padding: 10px; /* Add padding if needed */
-        border-radius: 8px; /* Optional: add border-radius for rounded corners */
+        padding: 10px;  
+        border-radius: 8px; 
         margin-top: 99px;
     }
     
     .cardData span {
         color: red;
         font-family: sans-serif;
-        font-size: 14px; /* Adjust font size if needed */
+        font-size: 14px;  
     }
 
     
-}
+} */

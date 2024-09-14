@@ -50,7 +50,7 @@ const Navbar = () => {
             </Link>
                 MENZEL PARIS
                 <p>
-                    bonjour cher client <small className='flach'> •</small>    
+                    bonjour cher  <small className='flach'> •</small>    
                     <span style={{ 
                         color: auth?.username === "admin" ? "gold" : "red", 
                         fontFamily: "cursive", 
@@ -69,7 +69,8 @@ const Navbar = () => {
             <div className={`nav__logo ${isOpen ? 'open' : ''}`}>
                 <ul>
                     <li onClick={handleLogOut}>Log out</li>
-                    <li>Accueil</li>
+                     
+                    <Link to={"/StoreData"} style={{textDecoration:"none",color:"white",cursor:"pointer"}}><li>Accueil</li></Link>
                     <li onClick={() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })}>Produits</li>
                     <Link to="/" style={{ textDecoration: 'none', color: '#fff', fontFamily: 'Arial' }}>
                         <li>Mon Compte</li>

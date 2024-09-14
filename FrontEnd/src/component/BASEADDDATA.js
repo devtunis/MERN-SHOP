@@ -59,6 +59,7 @@ const BASEADDDATA = () => {
 
     return (
         <div className='containerX'>
+            <h1>Update Casquette <p style={{fontSize:"10px",color:"red"}}>Size pictuer 1 mb to 8mb max</p> </h1>
             {imgPreview && <img src={imgPreview} alt="Preview" style={{ width: '100px', height: '100px' }} />}
             <input
                 className='prixProudctSection'
