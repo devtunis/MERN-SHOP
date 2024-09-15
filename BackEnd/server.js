@@ -1,6 +1,7 @@
     import Users from "./dbMode.js"
     import Casquette from "./dbModel2.js"
     import Lunette from "./dbModel3.js"
+    import SectionSac from "./dbModel4.js"
     import express from "express"
     import mongoose  from "mongoose";
     import cors from "cors"
@@ -9,6 +10,8 @@
     import { error } from "console";
     import dotenv from 'dotenv';
     import bcrypt from 'bcryptjs'; // Add this import statement
+    import stripe from 'stripe';
+    import bodyParser from 'body-parser';
 
     // this new Thing in server.js
     dotenv.config(); // Load environment variables
@@ -26,7 +29,7 @@
     })
     
     app.use(express.json());
-
+    app.use(bodyParser.json());
     // Middleware setup
     app.use(cors({
         origin: process.env.ORIGINDOMAIN,                  
@@ -277,6 +280,65 @@ app.post('/postLunette', upload.single('imgItem'), async (req, res) => {
 
 
 
+
+
+
+
+
+
+
+
+
+// -------------------------POST SAC SECTION---------------------------------------
+app.post('/PostSac', upload.single('imgItem'), async (req, res) => {
+  console.log('Request Body:', req.body);
+  console.log('Uploaded File:', req.file);
+
+  const { PrixProduct, id, titleProduct } = req.body;
+  const imgItem = req.file ? req.file.path : null;
+  
+
+  try {
+      if (!PrixProduct || !id || !titleProduct) {
+          return res.status(400).json({ message: "All fields (PrixProduct, id, titleProduct) are required." });
+      }
+
+      // Check if a Lunette with the same ID already exists
+      const existingLunette = await SectionSac.findOne({ id });
+
+      if (existingLunette) {
+          return res.status(400).json({ message: "Lunette with this ID already exists." });
+      }
+
+      // Create a new Lunette
+      const newSac = new SectionSac({ PrixProduct, id, imgItem, titleProduct });
+
+      // Save the new Lunette to the database
+      await newSac.save();
+
+      // Respond with the created Lunette
+      res.status(200).json(newSac);
+
+  } catch (error) {
+      console.error(`Error: ${error.message}`, error);
+      res.status(500).json({ message: "An error occurred while processing your request." });
+  }
+});
+
+app.get("/SacImage",async(req,res)=>{
+  try{
+      const reponse = await SectionSac.find()
+      res.status(200).json(reponse)
+  }
+  catch(eroor){
+    console.log(`this error by ${eroor}`)
+    res.status(404).json({message : eroor})
+  }
+})
+
+
+
+
 // app.put("/lx/:id", async (req, res) => {
 //   try {
 //     const { PrixProduct, id, imgItem, titleProduct, userId } = req.body;
@@ -419,6 +481,31 @@ app.post("/identify", async (req, res) => {
     res.status(500).json({ message: "An error occurred" });
   }
 });
+
+
+const stripeClient = stripe(process.env.STRIPE_SECRET_KEY); // Use your Stripe Secret Key from environment variables
+//NahdiGhaith
+ 
+app.post('/create-payment-intent', async (req, res) => {
+  const { paymentMethodId, amount } = req.body;
+
+  try {
+    const paymentIntent = await stripeClient.paymentIntents.create({
+      amount: amount, // Amount in cents
+      currency: 'eur', // Currency
+      payment_method: paymentMethodId,
+      confirm: true,
+      // Add return_url here
+      return_url: 'http://localhost:5000/return-url'
+    });
+
+    res.json({ success: true, paymentIntent });
+  } catch (error) {
+    console.error('Error creating payment intent:', error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
 
     // Start the server
     app.listen(port, () => {
