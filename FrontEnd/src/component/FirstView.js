@@ -19,7 +19,7 @@ const   FirstView = () => {
           <div className='firstview__img'><img src='https://cdn.pixabay.com/photo/2013/07/13/11/31/shop-158317_640.png'/></div>
           <div className='firstview__titile'> 
             <h1>Shop</h1>
-            <h4 className='whatsapp'>What's up?     </h4>
+            <h4 className='whatsapp'>What s up?     </h4>
           </div>
 
 

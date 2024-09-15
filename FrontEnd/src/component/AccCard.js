@@ -16,6 +16,11 @@ const AccCard = ({ id, imgLink, title }) => {
       console.log(refA)
       refA.current.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
     }
+
+
+    if (title === 'Découvrir nos sac') {
+      Nav('/SectionSac');
+    }
   };
 
   return (

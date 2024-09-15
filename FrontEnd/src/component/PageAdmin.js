@@ -8,6 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Link } from 'react-router-dom';
 import Copy from './Copy';
 import LunetteForm from './LunetteForm';
+import SacForm from './SacForm';
 
 const PageAdmin = () => {
     const { auth } = useGlobalContext();
@@ -155,7 +156,9 @@ const PageAdmin = () => {
                     <LunetteForm/>
                   
                 </div>
-                <div className="x DataBaseSAQUE"></div>
+                <div className="x DataBaseSAQUE">
+                    <SacForm/>
+                </div>
                
             </div>
         </div>

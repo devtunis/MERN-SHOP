@@ -66,7 +66,10 @@
     text-align: center;
 }
 
+@media only screen and (max-width:1050px) {
+   
 
+}
 
 
 @media only screen and (max-width: 600px) {
@@ -140,4 +143,98 @@
 
        
 
+  }
+
+
+
+  @media only screen and (max-width:1050px) {
+   
+    .FastView{
+        width: 100%;
+        height: 100vh;
+        
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         background-color: black;
+         button{
+           border-radius: 10px;
+           background-color: orange;
+         }
+         button:hover{
+           cursor: pointer;
+           background-color: grey;
+         }
+       
+       .FastViewInside{
+           width: 100%;
+           height: 76%;
+           background-color: rgb(246, 244, 244);
+           box-shadow: 2px 2px 3px rgb(246, 244, 244);
+           display: flex;
+           flex-direction:column;
+           .FastViewInsideImg{
+               width:100%;
+               height: 40%;
+               display: flex;
+               justify-content: center;
+               align-items: center;
+       
+           }
+           img{  
+               width: 100%;
+               height: 90%;
+               object-fit: cover;
+                
+           }
+       }
+       .FastViewInsideShoppin{
+            display: flex;
+            justify-content: center;
+            
+       
+           button{
+               width: 40%;
+               border: none;
+               padding:13px;
+               display: flex;
+               flex-direction: row;
+               justify-content: center;
+               align-items: center;
+               gap: 50px;
+           }
+       }
+       
+       
+       }
+       .FastViewInsideTitle{
+            
+           width: 100%;
+           height: auto;
+           display: flex;
+           flex-direction: column;
+           gap: 30px;
+           text-align: center;
+       }
+  }
+
+
+  .FastViewInsideImg{
+    display: flex;
+    flex-direction: column;
+    .firstChildSpanChild{
+        font-size: large;
+        cursor: pointer;
+        background-color: transparent;
+        font-size: 30px;
+        border-radius: 100%;
+        height: 30px;
+        width: 30px;
+        display: grid;
+        place-content: center;
+    }
+
+    .firstChildSpanChild:hover{
+        background-color: brown;
+    }
   }

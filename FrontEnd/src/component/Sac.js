@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import axios from "./axios";
-import StarRatings from "react-star-ratings";
-import "./Lunette.css";
+import "./Sac.css";
 import Navbar from './Navbar';
 import { useGlobalContext } from "./context/GlobalContext";
 import { toast } from "react-toastify"; // For toast notifications
@@ -49,8 +48,8 @@ const ProductCard = React.memo(({ product, HandleAddCart,HandelViewCart }) => (
 // Adding a display name to the memoized component
 ProductCard.displayName = "ProductCard";
 
-// Main Lunette component
-const Lunette = () => {
+// Main Sac component
+const Sac = () => {
   const Nav = useNavigate()
   const [products, setProducts] = useState([]);
   const [userData, setUserData] = useState(null); // To store fetched user data
@@ -111,7 +110,7 @@ const Lunette = () => {
   // Fetch products data from the API
   const FetchData = useCallback(async () => {
     try {
-      const response = await axios.get("/LunneteImage");
+      const response = await axios.get("/SacImage");
       setProducts(response.data);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -143,4 +142,4 @@ const Lunette = () => {
   );
 };
 
-export default React.memo(Lunette);
+export default React.memo(Sac);

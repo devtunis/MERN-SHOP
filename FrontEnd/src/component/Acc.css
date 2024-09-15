@@ -6,6 +6,14 @@ object-fit: cover;
 border-radius: 10px;
 }
 
+@media only screen and (max-width: 1050px) {
+  .cardAcc img{
+    width: 250px;
+    height: 340px;
+    object-fit: contain;
+    border-radius: 10px;
+    }
+}
 .itemAcceuilA{
    
     display: flex;

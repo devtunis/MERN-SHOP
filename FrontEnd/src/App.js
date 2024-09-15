@@ -17,7 +17,10 @@ import FirstView from "./component/FirstView";
 import FastView from "./component/FastView";
 import FooterContainer from "./component/FooterContainer";
 import Lunette from "./component/Lunette";
-
+import Sac from "./component/Sac";
+import THROWEROOR from "./THROWEROOR";
+import AppStripe from "./component/AppStripe";
+ 
 const App = () => {
   const Move = useGlobalContext();
   const [FatherReducernn, setFatherReducernn] = useState("Découvrir nos casquette");
@@ -46,9 +49,18 @@ const App = () => {
    
   ];
 
+
   useEffect(() => {
     setData(apiIamge[Counter].img1); // Corrected key name to 'img1'
   }, [Counter]);
+
+
+
+  window.addEventListener('beforeunload', () => {
+
+    localStorage.clear(); // this function should be when close the tab localStorage delet it
+});
+
 
   return (
     <React.StrictMode>
@@ -72,6 +84,7 @@ const App = () => {
                       ))}
                     </div>
                     <Casquette />
+                    <br/><br/>
                     <FooterContainer />
                   </div>
                 </>
@@ -86,6 +99,10 @@ const App = () => {
             <Route path="/" element={<FirstView />} />
             <Route path="/fastView" element={<FastView />} />
             <Route path="/Lunette" element={<Lunette />} />
+            <Route path="/SectionSac" element={<Sac/>} />
+            <Route path="/*" element={<THROWEROOR/>} />
+            <Route path="/Stripe" element={<AppStripe/>} />
+            
           </Routes>
         </Router>
       </ContextProvider>

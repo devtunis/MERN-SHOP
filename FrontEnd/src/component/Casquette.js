@@ -14,6 +14,7 @@ const Casquette = () => {
       const response = await axios.get('/casquettes');
       //console.log(response.data,"<=>")
       setCasquettes(response.data);
+      
     } catch (error) {
       console.log(`This error occurred: ${error}`);
     }

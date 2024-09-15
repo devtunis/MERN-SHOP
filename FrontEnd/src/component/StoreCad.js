@@ -63,7 +63,9 @@ const StoreCad = () => {
       fetchData();
     }
   }, [auth.userId]);
-
+const HandelButtonBuy = ()=>{
+console.log(price) // i waanna here bind with app like stripe or other app to do payment online can i do this ?? help me i dont now any thing of this plz  chat gpt i love you so much 
+}
   return (
     <>
       <div className='Payment'>
@@ -107,7 +109,7 @@ const StoreCad = () => {
           </div>
           <div className='x'>
             {BasketProudct.flat().length > 0 && (
-              <button className='buttoPaymebnt'>
+              <button className='buttoPaymebnt' onClick={HandelButtonBuy}>
                 Buy All <small>{price > 0 && `${price}$`}</small>
               </button>
             )}

@@ -26,11 +26,7 @@ const Navbar = () => {
             type: "AUTH",
             payload: null,
         });
-        // dispatch({
-        //     type :"ADD__TO__CARD",
-        //     BasketProudct:[]
-            
-        // })
+  
         localStorage.clear();
         Nav("/")
     };
@@ -57,7 +53,7 @@ const Navbar = () => {
                         fontWeight: "bold", 
                         textTransform: "capitalize" 
                     }}>
-                        {auth?.username ? auth.username : "Guest"}
+                        {auth?.username ? auth?.username : "Guest"}
                     </span> <small  className='flach'> •</small>    
                 </p>
                 <button className='xbutton changePostion' onClick={()=>{ setIsOpen(prev => !prev);}}>
@@ -72,16 +68,18 @@ const Navbar = () => {
                      
                     <Link to={"/StoreData"} style={{textDecoration:"none",color:"white",cursor:"pointer"}}><li>Accueil</li></Link>
                     <li onClick={() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })}>Produits</li>
+                  
                     <Link to="/" style={{ textDecoration: 'none', color: '#fff', fontFamily: 'Arial' }}>
                         <li>Mon Compte</li>
                     </Link>
+
                     <li>Contact</li>
                     <hr className='hrItem' />
                 </ul>
             </div>
             <div className='panier__logo' onClick={handlePanyer}>
                 {auth ? (
-                    <div>
+                    <div className='paylodCounterData'>
                         <small className='PayCounter'>{len}</small>
                         <img src='./iamges/panier.png' alt="Panier" />
                     </div>

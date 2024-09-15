@@ -63,9 +63,65 @@ li {
 }
 
  
+@media only screen and (max-width: 1050px) {
+    .hrItem {
+        display: block;
+    }
+    .xbutton {
+        display: block;
+        font-size: 30px;
+    }
+    .changePostion {
+        position: absolute;
+        right: 0;
+        margin-right: 15px;
+    }
 
+    .container__nav__bar {
+        background-color: black;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Roboto", sans-serif;
+        padding: 2px;
+        flex-direction: column;
+    }
 
-@media only screen and (max-width: 600px) {
+    .nav__logo {
+        display: none; /* Hide menu by default */
+    }
+
+    .nav__logo.open {
+        display: flex; /* Show menu when open */
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .nav__logo ul {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 1px;
+    }
+
+    .panier__logo img {
+        max-width: 36px;
+    }
+
+    ul {
+        background-color: black;
+    }
+
+    .logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+}
+
+@media only screen and (max-width: 600px)  {
     .hrItem {
         display: block;
     }

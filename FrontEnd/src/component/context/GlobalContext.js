@@ -7,6 +7,7 @@ const initialState = {
   auth: JSON.parse(localStorage.getItem("auth")) || null,
   Section_User: "Découvrir nos casquette",
   fastView: JSON.parse(localStorage.getItem("fastView")) || null,
+
 };
 
 // Reducer function
@@ -16,6 +17,11 @@ const reducer = (state, action) => {
   let UpdateFastView;
 
   switch (action.type) {
+   // case "UpdateProudctUser":
+    //  return{
+        //  ...state,
+        //  user : action.testPaylodReactDataToogleFalseAndTrue
+      //  }
     case "Fast__View":
       UpdateFastView = action.paylodF;
       localStorage.setItem("fastView", JSON.stringify(UpdateFastView));
