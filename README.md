@@ -1,4 +1,4 @@
- 
+<pre>  
  
 let casquette1 = 0 
 let Sac = 0 
@@ -13,3 +13,4 @@ console.log("this how many casquette in my web site",casquette1)
 console.log("this how many Sac in my web site",Sac)
 console.log("this how many Lunette in my web site",Lunette)
  
+ </pre>
